@@ -1,8 +1,8 @@
 # accounting_system_project
-Problem statement 
+Problem statement <br/>
 University students are struggling in managing their expenses.
 
-Problem setting
+Problem setting <br/>
 University students will use a program in accordance to their earning and spending to help them track and manage their expenses.
 
 Feature to be implemented
