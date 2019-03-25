@@ -3,7 +3,7 @@ Problem statement
 University students are struggling in managing their expenses.
 
 Problem setting
-Univeitiy students will use a programe to help them track and manage their expenses.
+University students will use a program in accordance to their earning and spending to help them track and manage their expenses.
 
 Feature to be implemented
 1) Be able to add records of income and expenses
@@ -12,5 +12,4 @@ Feature to be implemented
 4) Users could view their records by date, type, and account
 5) The system should provide statistical report of users’ financial state (e.g. monthly income and expenses, percentage expenses based on diffeent catergories such as food, utility, leisure)
 6) The accounting system allows budget setting. When expenses reach the budget, there should be an alert from the system
-7) Extra function: Set a goal for next months spending and allow user to compare if they met their goals (for example the user can set their goal on % of expenditure on different catergiores, and % of money they would like to save.)
-//test
+7) Extra function: Set a goal for next months spending based on the current income and expenditure and allow user to compare if they met their goals (for example the user can set their goal on % of expenditure on different catergiores, and % of money they would like to save.)
