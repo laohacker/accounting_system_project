@@ -13,3 +13,5 @@ Feature to be implemented
 5) The system should provide statistical report of users’ financial state (e.g. monthly income and expenses, percentage expenses based on diffeent catergories such as food, utility, leisure)
 6) The accounting system allows budget setting. When expenses reach the budget, there should be an alert from the system
 7) Extra function: Set a goal for next months spending based on the current income and expenditure and allow user to compare if they met their goals (for example the user can set their goal on % of expenditure on different catergiores, and % of money they would like to save.)
+
+testing commit in atom
