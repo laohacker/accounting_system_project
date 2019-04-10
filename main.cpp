@@ -14,6 +14,10 @@ void output_menu() {
   cout << endl;
 }
 
+void input_data() {
+  
+}
+
 int main() {
   int choice;
   while (choice!=0) {
@@ -23,7 +27,7 @@ int main() {
       cout << "Exit program " << endl;
     }
     else if (choice==0) {
-      
+
     }
     else if (choice<1 || choice>5) {
       cout << "Invalid input: number not within the choices " << endl;
