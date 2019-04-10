@@ -22,6 +22,9 @@ int main() {
     if (choice==0) {
       cout << "Exit program " << endl;
     }
+    else if (choice==0) {
+      
+    }
     else if (choice<1 || choice>5) {
       cout << "Invalid input: number not within the choices " << endl;
     }
