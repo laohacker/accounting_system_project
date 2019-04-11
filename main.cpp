@@ -29,19 +29,31 @@ void output_menu() {
 void input_data(records record[], int &num_records) {
   ofstream fout;
   fout.open("records.txt", ios::app);
-
-  cout << "Please enter the date in the format of (DD/MM/YYYY) i.e. 11/04/2019" << endl;
-  getline(cin,(record[num_records].date));
-  cout << endl;
-  cout << "Please enter the type of expense i.e. Income, Savings, Utilities, Food and Groceries, Personal Care, and Entertainment" << endl;
-  getline(cin,(record[num_records].type_expense));
-  cout << endl;
-  cout << "Please enter the accout i.e. Cash, Credit card, Bank" << endl;
-  getline(cin,(record[num_records].account));
-  cout << endl;
-  cout << "Please enter the ammount in HKD" << endl;
-  cin >> record[num_records].amount;
-  cout << endl;
+  bool confirm=true;
+  char confirm_entry;
+  while(confirm) {
+    cin.ignore();
+    cout << "Please enter the date in the format of (DD/MM/YYYY) i.e. 11/04/2019" << endl;
+    getline(cin,(record[num_records].date));
+    cout << endl;
+    cout << "Please enter the type of expense i.e. Income, Savings, Utilities, Food and Groceries, Personal Care, and Entertainment" << endl;
+    getline(cin,(record[num_records].type_expense));
+    cout << endl;
+    cout << "Please enter the accout i.e. Cash, Credit card, Bank" << endl;
+    getline(cin,(record[num_records].account));
+    cout << endl;
+    cout << "Please enter the ammount in HKD" << endl;
+    cin >> record[num_records].amount;
+    cout << endl;
+    cout << "Date:" << record[num_records].date << " " << "Expense" << record[num_records].type_expense << " " << "Account:" << record[num_records].account << " " << "Amount" << record[num_records].amount <<endl;
+    cout << "Would you like to confirm entry? Y/N" <<endl;
+    cin >> confirm_entry;
+    cout << endl;
+    if (confirm_entry=='Y'){
+      confirm=false;
+      break;
+    }
+  }
   fout << record[num_records].date << " " << record[num_records].type_expense << " " << record[num_records].account << " " << record[num_records].amount <<endl;
   num_records=num_records+1;
 
