@@ -68,7 +68,7 @@ void delete_data(records record[], int &num_records) {
   cout << "Please type in the date of the record you would like to delete: " << endl;
   cin.ignore();
   getline(cin,date);
-  for (int j=0;j<num_records;j++) {
+  for (int j=1;j<num_records;j++) {
     if (record[j].date==date) {
       for (int k=j;k<num_records;k++) {
         record[k].date=record[k+1].date;
@@ -88,6 +88,28 @@ void update_record(records record[], int &num_records) {
     fout << record[i].date << " " << record[i].type_expense << " " << record[i].account << " " << record[i].amount <<endl;
   }
   fout.close();
+}
+
+void edit_data(records record[], int &num_records) {
+  string date;
+  for (int i=1;i<num_records;i++) {
+    cout << "Date: " << record[i].date << " " << "Type of expenditure: " << record[i].type_expense << " " << "Type of account: "<< record[i].account << " " << "Amount: " << record[i].amount <<endl;
+  }
+  cout << "Select the date of the record you would like to modify: " << endl;
+  cin.ignore();
+  getline(cin,date);
+  for (int j=1;j<num_records;j++) {
+    if (record[j].date==date) {
+      cout << "Type the new date: " << endl;
+      cin >> record[j].date;
+      cout << "Type the new type of expenditure: " << endl;
+      cin >> record[j].type_expense;
+      cout << "Type the new type of account: " << endl;
+      cin >> record[j].account;
+      cout << "Type the new amount: " << endl;
+      cin >> record[j].amount;
+    }
+  }
 }
 
 int main() {
@@ -122,7 +144,16 @@ int main() {
         cout << "Would you like to edit a record? (Y/N) " << endl;
         cin >> answer;
         if (answer=='Y') {
-          //edit_data();
+          if (num_words-1==0) {
+            cout << "Cannot modify record: there is no record!" << endl;
+          }
+          else {
+            edit_data(record, num_words);
+            update_record(record, num_words);
+          }
+        }
+        else if (answer=='N') {
+          continue;
         }
       }
       else {
