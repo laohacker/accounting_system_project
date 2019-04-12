@@ -60,6 +60,36 @@ void input_data(records record[], int &num_records) {
   fout.close();
 }
 
+void delete_data(records record[], int &num_records) {
+  string date;
+  for (int i=1;i<num_records;i++) {
+    cout << "Date: " << record[i].date << " " << "Type of expenditure: " << record[i].type_expense << " " << "Type of account: "<< record[i].account << " " << "Amount: " << record[i].amount <<endl;
+  }
+  cout << "Please type in the date of the record you would like to delete: " << endl;
+  cin.ignore();
+  getline(cin,date);
+  for (int j=0;j<num_records;j++) {
+    if (record[j].date==date) {
+      for (int k=j;k<num_records;k++) {
+        record[k].date=record[k+1].date;
+        record[k].type_expense=record[k+1].type_expense;
+        record[k].account=record[k+1].account;
+        record[k].amount=record[k+1].amount;
+      }
+    }
+  }
+}
+
+void update_record(records record[], int &num_records) {
+  ofstream fout;
+  remove("records.txt");
+  fout.open("records.txt");
+  for (int i=1;i<num_records;i++) {
+    fout << record[i].date << " " << record[i].type_expense << " " << record[i].account << " " << record[i].amount <<endl;
+  }
+  fout.close();
+}
+
 int main() {
   int choice=1;
   records record[MAX_NUM_RECORDS];
@@ -73,11 +103,34 @@ int main() {
     else if (choice==1) {
       input_data(record, num_words);
     }
+
+    else if (choice==2) {
+      char answer;
+      cout << "Would you like to delete a record? (Y/N) " << endl;
+      cin >> answer;
+      if (answer=='Y') {
+        if (num_words-1==0) {
+          cout<< "Cannot delete record: there is no record!" << endl;
+        }
+        else {
+          delete_data(record,num_words);
+          num_words--;
+          update_record(record, num_words);
+        }
+      }
+      else if (answer=='N') {
+        cout << "Would you like to edit a record? (Y/N) " << endl;
+        cin >> answer;
+        if (answer=='Y') {
+          //edit_data();
+        }
+      }
+      else {
+        cout << "Invalid input!" << endl;
+      }
+    }
     else if (choice<1 || choice>5) {
       cout << "Invalid input: number not within the choices " << endl;
-    }
-    else {
-      cout << "You selected " << choice << endl;
     }
   }
   return 0;
