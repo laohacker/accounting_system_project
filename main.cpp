@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <iomanip>
 
 using namespace std;
 
@@ -26,6 +27,60 @@ void output_menu() {
   cout << endl;
 }
 
+void input_records_from_txt(records record[], int &num_records) {
+  ifstream fin ("records.txt");
+  string record_line;
+  string date,type,account,amount;
+  while (getline(fin, record_line)) {
+    date = record_line.substr(0,15);
+    type = record_line.substr(15,25);
+    account = record_line.substr(40,15);
+    amount = record_line.substr(65,20);
+    for (int i = 0, length=date.length(); i<length; i++) {
+      if (date[i]!=32){
+        break;
+      }
+      if (date[i]==32) {
+        date.erase(i--,1);
+        length=date.length();
+      }
+    }
+    for (int j = 0, length=type.length(); j<length; j++) {
+      if (type[j]!=32){
+        break;
+      }
+      if (type[j]==32) {
+        type.erase(j--,1);
+        length=type.length();
+      }
+    }
+    for (int k = 0, length=account.length(); k<length; k++) {
+      if (account[k]!=32){
+        break;
+      }
+      if (account[k]==32) {
+        account.erase(k--,1);
+        length=account.length();
+      }
+    }
+    for (int l = 0, length=amount.length(); l<length; l++) {
+      if (amount[l]!=32){
+        break;
+      }
+      if (amount[l]==32) {
+        amount.erase(l--,1);
+        length=amount.length();
+      }
+    }
+    record[num_records].date=date;
+    record[num_records].type_expense=type;
+    record[num_records].account=account;
+    record[num_records].amount=stoi(amount);
+    num_records=num_records+1;
+  }
+  fin.close();
+}
+
 void input_data(records record[], int &num_records) {
   ofstream fout;
   fout.open("records.txt", ios::app);
@@ -33,7 +88,7 @@ void input_data(records record[], int &num_records) {
   char confirm_entry;
   while(confirm) {
     cin.ignore();
-    cout << "Please enter the date in the format of (DD/MM/YYYY) i.e. 11/04/2019" << endl;
+    cout << "Please enter the date in the format of (DD/MM/YYYY) i.e. 01/04/2019" << endl;
     getline(cin,(record[num_records].date));
     cout << endl;
     cout << "Please enter the type of expense i.e. Income, Savings, Utilities, Food and Groceries, Personal Care, and Entertainment" << endl;
@@ -45,7 +100,7 @@ void input_data(records record[], int &num_records) {
     cout << "Please enter the ammount in HKD" << endl;
     cin >> record[num_records].amount;
     cout << endl;
-    cout << "Date:" << record[num_records].date << " " << "Expense" << record[num_records].type_expense << " " << "Account:" << record[num_records].account << " " << "Amount" << record[num_records].amount <<endl;
+    cout << "Date:" << record[num_records].date << "   " << "Expense:" << record[num_records].type_expense << "   " << "Account:" << record[num_records].account << "   " << "Amount:" << record[num_records].amount <<endl;
     cout << "Would you like to confirm entry? Y/N" <<endl;
     cin >> confirm_entry;
     cout << endl;
@@ -54,9 +109,8 @@ void input_data(records record[], int &num_records) {
       break;
     }
   }
-  fout << record[num_records].date << " " << record[num_records].type_expense << " " << record[num_records].account << " " << record[num_records].amount <<endl;
+  fout << setw(15) << record[num_records].date << setw(25) << record[num_records].type_expense << setw(15) << record[num_records].account << setw(20) << record[num_records].amount <<endl;
   num_records=num_records+1;
-
   fout.close();
 }
 
@@ -85,7 +139,7 @@ void update_record(records record[], int &num_records) {
   remove("records.txt");
   fout.open("records.txt");
   for (int i=1;i<num_records;i++) {
-    fout << record[i].date << " " << record[i].type_expense << " " << record[i].account << " " << record[i].amount <<endl;
+    fout << setw(15) << record[num_records].date << setw(25) << record[num_records].type_expense << setw(15) << record[num_records].account << setw(20) << record[num_records].amount <<endl;
   }
   fout.close();
 }
@@ -116,6 +170,7 @@ int main() {
   int choice=1;
   records record[MAX_NUM_RECORDS];
   int num_words=1;
+  input_records_from_txt (record, num_words);
   while (choice!=0) {
     output_menu();
     cin >> choice;
