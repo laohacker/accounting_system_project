@@ -139,7 +139,7 @@ void update_record(records record[], int &num_records) {
   remove("records.txt");
   fout.open("records.txt");
   for (int i=1;i<num_records;i++) {
-    fout << setw(15) << record[num_records].date << setw(25) << record[num_records].type_expense << setw(15) << record[num_records].account << setw(20) << record[num_records].amount <<endl;
+    fout << setw(15) << record[i].date << setw(25) << record[i].type_expense << setw(15) << record[i].account << setw(20) << record[i].amount <<endl;
   }
   fout.close();
 }
