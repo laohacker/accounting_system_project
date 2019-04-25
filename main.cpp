@@ -166,6 +166,93 @@ void edit_data(records record[], int &num_records) {
   }
 }
 
+void sort_date(records record[],int &num_records) {
+  //create array that stores unique dates
+  int diff_date_count=0;
+  string diff_date[MAX_NUM_RECORDS];
+  for (int i=1;i<num_records;i++) {
+    int found=0;
+    for (int j=0;j<=diff_date_count;j++) {
+      if (diff_date_count==0) {
+        diff_date[j]=record[i].date;
+        diff_date_count++;
+      }
+      else if (diff_date[j]==record[i].date) {
+        found++;
+      }
+    }
+    if (found==0) {
+      diff_date[diff_date_count]=record[i].date;
+      diff_date_count++;
+    }
+  }
+  for (int k=1;k<diff_date_count;k++) {
+    for (int l=1;l<num_records;l++) {
+      if (record[l].date==diff_date[k]) {
+        cout << setw(15) << record[l].date << " " << setw(25) << record[l].type_expense << " " << setw(15) << record[l].account << " " << setw(20) << record[l].amount << endl;
+      }
+    }
+  }
+}
+
+void sort_account(records record[],int &num_records) {
+  //create array that stores unique accounts
+  int diff_account_count=0;
+  string diff_account[MAX_NUM_RECORDS];
+  for (int i=1;i<num_records;i++) {
+    int found=0;
+    for (int j=0;j<=diff_account_count;j++) {
+      if (diff_account_count==0) {
+        diff_account[j]=record[i].account;
+        diff_account_count++;
+      }
+      else if (diff_account[j]==record[i].account) {
+        found++;
+      }
+    }
+    if (found==0) {
+      diff_account[diff_account_count]=record[i].account;
+      diff_account_count++;
+    }
+  }
+  for (int k=1;k<diff_account_count;k++) {
+    for (int l=1;l<num_records;l++) {
+      if (record[l].account==diff_account[k]) {
+        cout << setw(15) << record[l].date << " " << setw(25) << record[l].type_expense << " " << setw(15) << record[l].account << " " << setw(20) << record[l].amount << endl;
+      }
+    }
+  }
+}
+
+void sort_expense(records record[],int &num_records) {
+  //create array that stores unique expense
+  int diff_expense_count=0;
+  string diff_expense[MAX_NUM_RECORDS];
+  for (int i=1;i<num_records;i++) {
+    int found=0;
+    for (int j=0;j<=diff_expense_count;j++) {
+      if (diff_expense_count==0) {
+        diff_expense[j]=record[i].type_expense;
+        diff_expense_count++;
+      }
+      else if (diff_expense[j]==record[i].type_expense) {
+        found++;
+      }
+    }
+    if (found==0) {
+      diff_expense[diff_expense_count]=record[i].type_expense;
+      diff_expense_count++;
+    }
+  }
+  for (int k=1;k<diff_expense_count;k++) {
+    for (int l=1;l<num_records;l++) {
+      if (record[l].type_expense==diff_expense[k]) {
+        cout << setw(15) << record[l].date << " " << setw(25) << record[l].type_expense << " " << setw(15) << record[l].account << " " << setw(20) << record[l].amount << endl;
+      }
+    }
+  }
+}
+
 int main() {
   int choice=1;
   records record[MAX_NUM_RECORDS];
@@ -210,6 +297,24 @@ int main() {
         else if (answer=='N') {
           continue;
         }
+      }
+      else {
+        cout << "Invalid input!" << endl;
+      }
+    }
+    else if (choice==3) {
+      cout << "Please select the way of sorting (date, account type, type of expense): " << endl;
+      string answer;
+      cin.ignore();
+      getline(cin,answer);
+      if (answer=="date") {
+        sort_date(record, num_words);
+      }
+      else if (answer=="account type") {
+        sort_account(record, num_words);
+      }
+      else if (answer=="type of expense") {
+        sort_expense(record, num_words);
       }
       else {
         cout << "Invalid input!" << endl;
