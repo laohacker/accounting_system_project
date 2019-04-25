@@ -167,7 +167,6 @@ void edit_data(records record[], int &num_records) {
 }
 
 void sort_date(records record[],int &num_records) {
-  //create array that stores unique dates
   int diff_date_count=0;
   string diff_date[MAX_NUM_RECORDS];
   for (int i=1;i<num_records;i++) {
@@ -186,6 +185,32 @@ void sort_date(records record[],int &num_records) {
       diff_date_count++;
     }
   }
+  for (int n=0;n<diff_date_count;n++) {
+    for (int m=1;m<diff_date_count-1;m++) {
+      if (stoi(diff_date[m].substr(6,4))<=stoi(diff_date[m+1].substr(6,4))) {
+        if (stoi(diff_date[m].substr(3,2))<=stoi(diff_date[m+1].substr(3,2))) {
+          if (stoi(diff_date[m].substr(0,2))<=stoi(diff_date[m+1].substr(0,2))) {
+            continue;
+          }
+          else {
+            string temp=diff_date[m];
+            diff_date[m]=diff_date[m+1];
+            diff_date[m+1]=temp;
+          }
+        }
+        else {
+          string temp=diff_date[m];
+          diff_date[m]=diff_date[m+1];
+          diff_date[m+1]=temp;
+        }
+      }
+      else {
+        string temp=diff_date[m];
+        diff_date[m]=diff_date[m+1];
+        diff_date[m+1]=temp;
+      }
+    }
+  }
   for (int k=1;k<diff_date_count;k++) {
     for (int l=1;l<num_records;l++) {
       if (record[l].date==diff_date[k]) {
@@ -196,7 +221,6 @@ void sort_date(records record[],int &num_records) {
 }
 
 void sort_account(records record[],int &num_records) {
-  //create array that stores unique accounts
   int diff_account_count=0;
   string diff_account[MAX_NUM_RECORDS];
   for (int i=1;i<num_records;i++) {
@@ -225,7 +249,6 @@ void sort_account(records record[],int &num_records) {
 }
 
 void sort_expense(records record[],int &num_records) {
-  //create array that stores unique expense
   int diff_expense_count=0;
   string diff_expense[MAX_NUM_RECORDS];
   for (int i=1;i<num_records;i++) {
