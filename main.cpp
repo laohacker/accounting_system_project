@@ -293,34 +293,40 @@ void set_budget(int &budget) {
 }
 
 void fin_report(records record[], int num_records, int budget) {
-  int total_expense=0;
-  int total_income=0;
-  string year;
-  string month;
-  cout << "Please enter which year you would like to generterate the financial report" << endl;
-  cin >> year;
-  cout << "Please enter which month you would like to generterate the financial report" << endl;
-  cin >> month;
-  for (int i=1; i<num_records; i++) {
-    string date = record[i].date;
-    if (date.substr(6,4)==year && date.substr(3,2)==month){
-      if (record[i].type_expense!="Income") {
-        total_expense=total_expense+record[i].amount;
-      }
-      else {
-        total_income=total_income+record[i].amount;
+  if(budget!=0) {
+    int total_expense=0;
+    int total_income=0;
+    string year;
+    string month;
+    cout << "Please enter which year you would like to generterate the financial report" << endl;
+    cin >> year;
+    cout << "Please enter which month you would like to generterate the financial report" << endl;
+    cin >> month;
+    for (int i=1; i<num_records; i++) {
+      string date = record[i].date;
+      if (date.substr(6,4)==year && date.substr(3,2)==month){
+        if (record[i].type_expense!="Income") {
+          total_expense=total_expense+record[i].amount;
+        }
+        else {
+          total_income=total_income+record[i].amount;
+        }
       }
     }
-  }
-  cout << "Total Income: " << total_income << endl;
-  cout << "Total expenses: " << total_expense <<endl;
-  if (total_expense<=budget){
-    cout << "You are under budget by your set budget of " << budget << " by " << total_expense-budget;
+    cout << "Total Income: " << total_income << endl;
+    cout << "Total expenses: " << total_expense <<endl;
+    if (total_expense<=budget){
+      cout << "You are under budget by your set budget of " << budget << " by " << abs(total_expense-budget);
+    }
+    else {
+      cout << "You are over budget by your set budget of " << budget << " by " << abs(budget-total_expense);
+    }
+    cout << endl;
   }
   else {
-    cout << "You are over budget by your set budget of " << budget << " by " << abs(budget-total_expense);
+    cout << "Please go to menu 4 and set budget" << endl;
+    cout << endl;
   }
-  cout << endl;
 }
 
 int main() {
