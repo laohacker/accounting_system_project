@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include <iomanip>
+#include <vector>
 
 using namespace std;
 
@@ -294,6 +295,7 @@ void set_budget(int &budget) {
 
 void fin_report(records record[], int num_records, int budget) {
   if(budget!=0) {
+
     int total_expense=0;
     int total_income=0;
     string year;
@@ -302,6 +304,35 @@ void fin_report(records record[], int num_records, int budget) {
     cin >> year;
     cout << "Please enter which month you would like to generterate the financial report" << endl;
     cin >> month;
+
+    vector <string> type_expense;
+    vector <int> sum_expense;
+    //loop for number of records
+    for (int x=1; x<num_records; x++) {
+      string date = record[x].date;
+      bool add = true;
+      //check for vector type_expense
+      for (int y=0; y< type_expense.size(); y++){
+        if (record[x].type_expense==type_expense[y]){
+          add = false;
+        }
+      }
+      if (add==true && record[x].type_expense!="Income" && date.substr(6,4)==year && date.substr(3,2)==month) {
+        type_expense.push_back(record[x].type_expense);
+      }
+    }
+    for (int z=0; z<type_expense.size(); z++){
+      sum_expense.push_back(0);
+    }
+    for (int a=0; a<type_expense.size(); a++) {
+      for (int b=1; b<num_records; b++) {
+        string date = record[b].date;
+        if (record[b].type_expense==type_expense[a] && date.substr(6,4)==year && date.substr(3,2)==month){
+          sum_expense[a]=sum_expense[a]+record[b].amount;
+        }
+      }
+    }
+
     for (int i=1; i<num_records; i++) {
       string date = record[i].date;
       if (date.substr(6,4)==year && date.substr(3,2)==month){
@@ -316,10 +347,14 @@ void fin_report(records record[], int num_records, int budget) {
     cout << "Total Income: " << total_income << endl;
     cout << "Total expenses: " << total_expense <<endl;
     if (total_expense<=budget){
-      cout << "You are under budget by your set budget of " << budget << " by " << abs(total_expense-budget);
+      cout << "You are under budget by your set budget of " << budget << " by " << abs(total_expense-budget) << endl;
     }
     else {
-      cout << "You are over budget by your set budget of " << budget << " by " << abs(budget-total_expense);
+      cout << "You are over budget by your set budget of " << budget << " by " << abs(budget-total_expense) << endl;
+    }
+
+    for (int j=0; j<type_expense.size(); j++) {
+      cout << "Amount spent on " << type_expense[j] << ": " << sum_expense[j] << endl;
     }
     cout << endl;
   }
