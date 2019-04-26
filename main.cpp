@@ -21,8 +21,9 @@ void output_menu() {
   cout << "1: Add records of income and expenses " << endl;
   cout << "2: Delete or edit personal record " << endl;
   cout << "3: View record information by sorting " << endl;
-  cout << "4: Display user financial report " << endl;
-  cout << "5: Display recommended monthly budget plan " << endl;
+  cout << "4: Set monthly budget" << endl;
+  cout << "5: Display user financial report " << endl;
+  cout << "6: Display recommended monthly budget plan " << endl;
   cout << "------------------------------------------------" <<endl;
   cout << endl;
 }
@@ -112,6 +113,12 @@ void input_data(records record[], int &num_records) {
   fout << setw(15) << record[num_records].date << setw(25) << record[num_records].type_expense << setw(15) << record[num_records].account << setw(20) << record[num_records].amount <<endl;
   num_records=num_records+1;
   fout.close();
+}
+
+void input_budget_from_txt(int &budget){
+  ifstream fin ("budget.txt");
+  fin >> budget;
+  fin.close();
 }
 
 void delete_data(records record[], int &num_records) {
@@ -276,11 +283,53 @@ void sort_expense(records record[],int &num_records) {
   }
 }
 
+void set_budget(int &budget) {
+  ofstream fout ("budget.txt");
+  cout << "Please enter the bugget you would like to set" <<endl;
+  cin  >> budget;
+  fout << budget;
+  cout << endl;
+  fout.close();
+}
+
+void fin_report(records record[], int num_records, int budget) {
+  int total_expense=0;
+  int total_income=0;
+  string year;
+  string month;
+  cout << "Please enter which year you would like to generterate the financial report" << endl;
+  cin >> year;
+  cout << "Please enter which month you would like to generterate the financial report" << endl;
+  cin >> month;
+  for (int i=1; i<num_records; i++) {
+    string date = record[i].date;
+    if (date.substr(6,4)==year && date.substr(3,2)==month){
+      if (record[i].type_expense!="Income") {
+        total_expense=total_expense+record[i].amount;
+      }
+      else {
+        total_income=total_income+record[i].amount;
+      }
+    }
+  }
+  cout << "Total Income: " << total_income << endl;
+  cout << "Total expenses: " << total_expense <<endl;
+  if (total_expense<=budget){
+    cout << "You are under budget by your set budget of " << budget << " by " << total_expense-budget;
+  }
+  else {
+    cout << "You are over budget by your set budget of " << budget << " by " << abs(budget-total_expense);
+  }
+  cout << endl;
+}
+
 int main() {
   int choice=1;
   records record[MAX_NUM_RECORDS];
   int num_words=1;
+  int budget=0;
   input_records_from_txt (record, num_words);
+  input_budget_from_txt (budget);
   while (choice!=0) {
     output_menu();
     cin >> choice;
@@ -343,7 +392,13 @@ int main() {
         cout << "Invalid input!" << endl;
       }
     }
-    else if (choice<1 || choice>5) {
+    else if (choice==4) {
+      set_budget(budget);
+    }
+    else if (choice==5) {
+      fin_report(record, num_words, budget);
+    }
+    else if (choice<1 || choice>6) {
       cout << "Invalid input: number not within the choices " << endl;
     }
   }
