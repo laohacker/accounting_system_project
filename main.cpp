@@ -196,9 +196,10 @@ void edit_data(records record[], int &num_records) {
       cout << "Type the new date: " << endl;
       cin >> record[j].date;
       cout << "Type the new type of expenditure: " << endl;
-      cin >> record[j].type_expense;
+      cin.ignore();
+      getline(cin,record[j].type_expense);
       cout << "Type the new type of account: " << endl;
-      cin >> record[j].account;
+      getline(cin,record[j].account);
       cout << "Type the new amount: " << endl;
       cin >> record[j].amount;
     }
