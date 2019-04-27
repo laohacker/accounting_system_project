@@ -1,7 +1,3 @@
-**IMPORTANT** </br>
---Output files with a *.txt* in their file name implies that that is the content in the "records.txt" file when the program ends while output files without a file name implies that it is a output from the program </br>
---Please take note that each test case file is independent of each other meaning the record.txt that has been created in your computer MUST be DELETED before testing them </br>
-
 Problem statement </br>
 University students are struggling in managing their expenses </br>
 
@@ -18,12 +14,17 @@ Feature to be implemented </br>
 6.The accounting system allows budget setting. User can check if they overspent by running the financial report </br>
 7.Extra function: Allow continuity of the program, when user enters data it will be saved and the user can comeback at anytime to continue their use of the program with all the original data entered previously still there </br>
 
+Caution </br>
+Since this program stores the previous inputs, if you want to clear the previous inputted data, please delete records.txt and budget.txt </br>
+
 Assumptions </br>
-1. User follow the format for entering the expenditure according to the instructions given to them during input </br>
+1. User follow the format for entering the records according to the instructions given to them during input </br>
 2. User inputs date, account type and type of expense according to the example given (e.g. 01/04/2019 for date, Income for type of expenditure and Cash for account type). Failure to do so will result in the sorting functions unable to work as intended </br>
 3. The length for type of expense should be less than 25 character long and the length for account should be less than 15 characters longs and the amount should be less than 20 integers </br>
 4. The user must enter some records before running the financial report, and the entered year and month must be a valid input, i.e. the user entered data for that specifed month and year and month already </br>
-5. The user must enter an integer when setting the budget.</br>
+5. The user must enter an integer when setting the budget </br>
+6. The user can only have a maximum of 1000 records in this database </br>
+7. The user must be consistent when typing the type of expense, including spelling and capitalization, or when user generate financial report the same type of expense might be split up, i.e. Food and food, there user must be consistent and type "food" everytime for the type of expense </br>
 
 Steps of operating the program </br>
 When first starting the program you will be greated with a menu with 6 options, the users can choose their desired sub-program to run by entering an integer </br>
