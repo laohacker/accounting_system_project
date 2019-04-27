@@ -1,15 +1,15 @@
-# accounting_system_project
-Problem statement <br/>
+Problem statement 
 University students are struggling in managing their expenses.
 
-Problem setting <br/>
+Problem setting 
 University students will use a program in accordance to their earning and spending to help them track and manage their expenses.
 
 Feature to be implemented
-1) Be able to add records of income and expenses
-2) The records will have basic information, like amount, date, types of income or expense (e.g. food, game, salary, etc.), account (e.g cash, bank card, credit card)
-3) The records can be deleted and edited at any time
-4) Users could view their records by date, type, and account
-5) The system should provide statistical report of users’ financial state (e.g. monthly income and expenses, percentage expenses based on diffeent catergories such as food, utility, leisure)
-6) The accounting system allows budget setting. When expenses reach the budget, there should be an alert from the system
-7) Extra function: Set a goal for next months spending based on the current income and expenditure and allow user to compare if they met their goals (for example the user can set their goal on % of expenditure on different catergiores, and % of money they would like to save.)
+
+Be able to add records of income and expenses
+The records will have basic information, like amount, date, types of income or expense (e.g. food, game, salary, etc.), account (e.g cash, bank card, credit card)
+The records can be deleted and edited at any time
+Users could view their records by date, type, and account
+The system should provide statistical report of users’ financial state (e.g. monthly income and expenses, percentage expenses based on diffeent catergories such as food, and utility)
+The accounting system allows budget setting. User can check if they overspent by running the financial report
+Extra function: Allow continuity of the program, when user enters data it will be saved and the user can comeback at anytime to continue their use of the program with all the original data entered previously still there
