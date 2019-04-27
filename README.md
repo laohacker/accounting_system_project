@@ -18,4 +18,31 @@ Assumptions </br>
 1. User follow the format for entering the expenditure according to the instructions given to them during input </br>
 2. User inputs date, account type and type of expense according to the example given (e.g. 01/04/2019 for date, Income for type of expenditure and Cash for account type). Failure to do so will result in the sorting functions unable to work as intended </br>
 3. The length for type of expense should be less than 25 character long and the length for account should be less than 15 characters longs and the amount should be less than 20 integers </br>
-4. The user must enter some records before running the financial report, and the entered year and month must be a valid input, i.e. the use entered data for that specifed month and year and month already </br>
+4. The user must enter some records before running the financial report, and the entered year and month must be a valid input, i.e. the user entered data for that specifed month and year and month already </br>
+5. The user must enter an integer when setting the budget.</br>
+
+Steps of operating the program </br>
+When first starting the program you will be greated with a menu with 6 options, the users can choose their desired sub-program to run by entering an integer </br>
+Choice 0: Quits programs </br>
+Choice 1: Add records </br>
+Choice 2: Modify/Delete records </br>
+Choice 3: View records by sorting </br>
+Choice 4: Set monthly budget </br>
+Choice 5: Generate financial report </br>
+E.g. If user wants to add records he will enter "1" </br>
+
+Choice 1: Add records </br>
+User will be asked to enter date, type of expense, account, and date respectively, please enter them by following the on screen instructions </br>
+
+Choice 2: Modify/Delete records </br>
+User will be asked if they want to delete a record, enter "Y" to delete a record and afterwards user can enter a number on which record they would like to delete </br>
+If user enter "N", user will be asked follow up question on if the want to edit a record, use can enter "Y" to edit a record, after they can afterwards user can enter a number on which record they would like to modify. User can enter the modified record </br>
+
+Choice 3: View records by sorting </br>
+User will be asked what way they would like to sort the records. User can enter "date" if they would like to sort by date </br>
+
+Choice 4: Set monthly budget </br>
+User will be asked to enter an integer for their desired monthly budget, e.g. "5000" for a monthly budget of 5000HKD </br>
+
+Choice 5: Generate financial report </br>
+User will be asked to enter a year and month respectively to generate a financial report in their desired month, e.g. 2019 for year and 05 for the month May </br>
