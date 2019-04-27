@@ -3,7 +3,6 @@
 #include <fstream>
 #include <iomanip>
 #include <vector>
-#include <cmath>
 
 using namespace std;
 
@@ -25,7 +24,6 @@ void output_menu() {
   cout << "3: View record information by sorting " << endl;
   cout << "4: Set monthly budget" << endl;
   cout << "5: Display user financial report " << endl;
-  cout << "6: Display recommended monthly budget plan " << endl;
   cout << "------------------------------------------------" <<endl;
   cout << endl;
 }
@@ -105,7 +103,7 @@ void input_data(records record[], int &num_records) {
     cout << "Please enter the date in the format of (DD/MM/YYYY) i.e. 01/04/2019" << endl;
     getline(cin,(record[num_records].date));
     cout << endl;
-    cout << "Please enter the type of expense i.e. Income, Savings, Utilities, Food and Groceries, Personal Care, and Entertainment" << endl;
+    cout << "Please enter the type of expense i.e. Income, Utilities, Food and Groceries, Personal Care, and Entertainment" << endl;
     getline(cin,(record[num_records].type_expense));
     cout << endl;
     cout << "Please enter the accout i.e. Cash, Credit card, Bank" << endl;
@@ -327,9 +325,9 @@ void fin_report(records record[], int num_records, int budget) {
     int total_income=0;
     string year;
     string month;
-    cout << "Please enter which year you would like to generterate the financial report" << endl;
+    cout << "Please enter which year you would like to generterate the financial report i.e. 2019" << endl;
     cin >> year;
-    cout << "Please enter which month you would like to generterate the financial report" << endl;
+    cout << "Please enter which month you would like to generterate the financial report i.e. 05 for May" << endl;
     cin >> month;
     //Find total expense per catergory i.e. Food and Utilities
     vector <string> type_expense;
@@ -481,7 +479,7 @@ int main() {
     else if (choice==5) {
       fin_report(record, num_words, budget);
     }
-    else if (choice<1 || choice>6) {
+    else if (choice<1 || choice>5) {
       cout << "Invalid input: number not within the choices " << endl;
     }
   }
