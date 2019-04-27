@@ -48,5 +48,5 @@ Choice 5: Generate financial report </br>
 User will be asked to enter a year and month respectively to generate a financial report in their desired month, e.g. 2019 for year and 05 for the month May </br>
 
 Testing </br>
-Sample records and budget have been provided for testingm to use them remove "sample_" from the txt's and the program will automatically load them in when you open the program </br> 
+Sample records and budget have been provided for testing, to use them remove "sample_" from the txt's and the program will automatically load them in when you open the program </br> 
 User may enter "5", followed by "2019", followed by "04" to see the financial report from April 2019 </br> 
