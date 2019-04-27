@@ -152,7 +152,7 @@ void delete_data(records record[], int &num_records) {
   //prompts user to choose the record to delete by inputting the number of the record
   cin >> find;
   for (int j=1;j<num_records;j++) {
-    //search for any record of the inputted number
+    //search for any record of the inputted number of record
     if (j==find) {
       //if such record is found, move the position of the all records forward by one starting from deleted record
       for (int k=j;k<num_records;k++) {
@@ -180,18 +180,18 @@ void update_record(records record[], int &num_records) {
 
 //modify the record requested by user
 void edit_data(records record[], int &num_records) {
-  string date;
+  int find=0;
   //outputs all the current records for user to modify from
   for (int i=1;i<num_records;i++) {
-    cout << "Date: " << record[i].date << " " << "Type of expenditure: " << record[i].type_expense << " " << "Type of account: "<< record[i].account << " " << "Amount: " << record[i].amount <<endl;
+    cout << i << ": " << "Date: " << record[i].date << " " << "Type of expenditure: " << record[i].type_expense << " " << "Type of account: "<< record[i].account << " " << "Amount: " << record[i].amount <<endl;
   }
-  cout << "Select the date of the record you would like to modify: " << endl;
+  cout << "Select the number of the record you would like to modify: " << endl;
   cin.ignore();
-  //prompts the user to choose the record to modify by inputting the date of the record
-  getline(cin,date);
+  //prompts the user to choose the record to modify by inputting the number of the record
+  cin >> find;
   for (int j=1;j<num_records;j++) {
-    //searches for the inputted date
-    if (record[j].date==date) {
+    //searches for the inputted number of record
+    if (j==find) {
       //prompts the user to input the new information for the record
       cout << "Type the new date: " << endl;
       cin >> record[j].date;
