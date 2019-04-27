@@ -3,6 +3,7 @@
 #include <fstream>
 #include <iomanip>
 #include <vector>
+#include <cmath>
 
 using namespace std;
 
@@ -354,7 +355,10 @@ void fin_report(records record[], int num_records, int budget) {
     }
 
     for (int j=0; j<type_expense.size(); j++) {
-      cout << "Amount spent on " << type_expense[j] << ": " << sum_expense[j] << endl;
+      float sum = sum_expense[j];
+      float total = total_expense;
+      int percentage = sum/total*100;
+      cout << "Amount spent on " << type_expense[j] << ":" << sum_expense[j] << " (" << percentage << "% of total expenses)" << endl;
     }
     cout << endl;
   }
