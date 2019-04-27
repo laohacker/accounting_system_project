@@ -16,3 +16,4 @@ Feature to be implemented </br>
 
 Assumptions </br>
 1. User follow the format for entering the expenditure according to the instructions given to them during input </br>
+2. User inputs only one record for each date. Failure to do so will lead to all similar input date records deleted or modified 
