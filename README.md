@@ -18,3 +18,4 @@ Assumptions </br>
 1. User follow the format for entering the expenditure according to the instructions given to them during input </br>
 2. User inputs only one record for each date (e.g. maximum of one record for date 01/04/2019). Failure to do so will lead to all similar input date records deleted or modified (e.g. all records with date 01/04/2019 will all be deleted if user inputs more than one record with date 01/04/2019 and deletes records with date 01/04/2019) </br>
 3. User inputs date, account type and type of expense according to the example given (e.g. 01/04/2019 for date, Income for type of expenditure and Cash for account type). Failure to do so will result in the sorting functions unable to work as intended </br>
+4. The length for type of expense should be less than 25 character long and the length for account should be less than 15 characters longs and the amount should be less than 20 integers. </br>
