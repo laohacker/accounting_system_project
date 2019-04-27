@@ -452,6 +452,7 @@ int main() {
       cout << "Exit program " << endl;
     }
     else if (choice==1) {
+      //user input records
       input_data(record, num_words);
     }
     else if (choice==2) {
@@ -511,9 +512,11 @@ int main() {
       }
     }
     else if (choice==4) {
+      //setting bugget
       set_budget(budget);
     }
     else if (choice==5) {
+      //generate financial report
       fin_report(record, num_words, budget);
     }
     //if user inputs number not within the choice selection
