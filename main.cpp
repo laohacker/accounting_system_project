@@ -140,20 +140,20 @@ void input_budget_from_txt(int &budget){
   fin.close();
 }
 
-//delete record requested by the user 
+//delete record requested by the user
 void delete_data(records record[], int &num_records) {
-  string date;
+  int find=0;
   //outputs all the records for user to choose the record to delete from
   for (int i=1;i<num_records;i++) {
-    cout << "Date: " << record[i].date << " " << "Type of expenditure: " << record[i].type_expense << " " << "Type of account: "<< record[i].account << " " << "Amount: " << record[i].amount <<endl;
+    cout << i << ": " << "Date: " << record[i].date << " " << "Type of expenditure: " << record[i].type_expense << " " << "Type of account: "<< record[i].account << " " << "Amount: " << record[i].amount <<endl;
   }
-  cout << "Please type in the date of the record you would like to delete: " << endl;
+  cout << "Please type in the number of the record you would like to delete: " << endl;
   cin.ignore();
-  //prompts user to choose the record to delete by inputting the date of the record
-  getline(cin,date);
+  //prompts user to choose the record to delete by inputting the number of the record
+  cin >> find;
   for (int j=1;j<num_records;j++) {
-    //search for any record of the inputted date
-    if (record[j].date==date) {
+    //search for any record of the inputted number
+    if (j==find) {
       //if such record is found, move the position of the all records forward by one starting from deleted record
       for (int k=j;k<num_records;k++) {
         record[k].date=record[k+1].date;
@@ -205,7 +205,7 @@ void edit_data(records record[], int &num_records) {
   }
 }
 
-//sort record by date 
+//sort record by date
 void sort_date(records record[],int &num_records) {
   int diff_date_count=0;
   string diff_date[MAX_NUM_RECORDS];
