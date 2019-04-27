@@ -28,7 +28,7 @@ Assumptions </br>
 4. The user must enter some records before running the financial report, and the entered year and month must be a valid input, i.e. the user entered data for that specifed month and year and month already </br>
 5. The user must enter an integer when setting the budget </br>
 6. The user can only have a maximum of 1000 records in this database </br>
-7. The user must be consistent when typing the type of expense, including spelling and capitalization, or when user generate financial report the same type of expense might be split up, i.e. Food and food, there user must be consistent and type "food" everytime for the type of expense </br>
+7. The user must be consistent when typing the type of expense, including spelling and capitalization, or when user generate financial report the same type of expense might be split up, i.e. Food and food, there user must be consistent and type "Food" everytime for the type of expense </br>
 
 Steps of operating the program </br>
 When first starting the program you will be greated with a menu with 6 options, the users can choose their desired sub-program to run by entering an integer </br>
