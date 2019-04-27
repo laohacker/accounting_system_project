@@ -1,0 +1,15 @@
+     01/04/2019                   Income           Bank                 15000
+     05/04/2019                     Food           Cash                 200
+     10/04/2019                Utilities           Cash                 500
+     06/04/2019            Entertainment           Cash                 100
+     10/04/2019            Personal Care           Cash                 100
+     13/04/2019            Entertainment           Cash                 50
+     17/04/2019                     Food           Cash                 300
+     17/04/2019            Personal Care           Cash                 200
+     20/04/2019            Entertainment           Cash                 50
+     22/04/2019            Personal Care           Cash                 100
+     25/04/2019            Entertainment           Cash                 200
+     27/04/2019            Entertainment           Cash                 300
+     28/04/2019            Personal Care    Credit Card                 500
+     28/04/2019                     Food           Cash                 300
+     28/04/2019            Personal Care           Bank                 500
