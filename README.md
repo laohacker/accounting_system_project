@@ -16,4 +16,5 @@ Feature to be implemented </br>
 
 Assumptions </br>
 1. User follow the format for entering the expenditure according to the instructions given to them during input </br>
-2. User inputs only one record for each date. Failure to do so will lead to all similar input date records deleted or modified 
+2. User inputs only one record for each date. Failure to do so will lead to all similar input date records deleted or modified </br>
+3. User inputs date, account type and type of expense according to the example given (e.g. 01/04/2019 for date, Income for type of expenditure and Cash for account type). Failure to do so will result in the sorting functions unable to work as intended </br>
