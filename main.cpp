@@ -30,15 +30,20 @@ void output_menu() {
   cout << endl;
 }
 
+//Input:Struct record & number of records
+//Function:Read records from records.txt when user open program for subsequent times
 void input_records_from_txt(records record[], int &num_records) {
+  //open file records.txt
   ifstream fin ("records.txt");
   string record_line;
   string date,type,account,amount;
+  //store records in txt into strings date, type, account, and amount
   while (getline(fin, record_line)) {
     date = record_line.substr(0,15);
     type = record_line.substr(15,25);
     account = record_line.substr(40,15);
     amount = record_line.substr(65,20);
+    //remove all spaces in strings date, type, account, and amount
     for (int i = 0, length=date.length(); i<length; i++) {
       if (date[i]!=32){
         break;
@@ -75,20 +80,26 @@ void input_records_from_txt(records record[], int &num_records) {
         length=amount.length();
       }
     }
+    //store strings date, type, account, and amount into respective record fields
     record[num_records].date=date;
     record[num_records].type_expense=type;
     record[num_records].account=account;
     record[num_records].amount=stoi(amount);
     num_records=num_records+1;
   }
+  //close records.txt
   fin.close();
 }
 
+//Input: Struct record & number of records
+//Function: Allow users to enter records into struct record and store data into records.txt
 void input_data(records record[], int &num_records) {
+  //open file records.txt
   ofstream fout;
   fout.open("records.txt", ios::app);
   bool confirm=true;
   char confirm_entry;
+  //Get user to enter date,type of expense,account, and amount one by one and store into record when user confirms input
   while(confirm) {
     cin.ignore();
     cout << "Please enter the date in the format of (DD/MM/YYYY) i.e. 01/04/2019" << endl;
@@ -112,14 +123,22 @@ void input_data(records record[], int &num_records) {
       break;
     }
   }
+  //store records into records.txt
   fout << setw(15) << record[num_records].date << setw(25) << record[num_records].type_expense << setw(15) << record[num_records].account << setw(20) << record[num_records].amount <<endl;
   num_records=num_records+1;
+  //close records.txt
   fout.close();
 }
 
+
+//Input:budget
+//Function:Read budget from budget.txt
 void input_budget_from_txt(int &budget){
+  //open file budget.txt
   ifstream fin ("budget.txt");
+  //read budget from txt and store into budget
   fin >> budget;
+  //close file budget.txt
   fin.close();
 }
 
@@ -285,18 +304,25 @@ void sort_expense(records record[],int &num_records) {
   }
 }
 
+//Input: budget
+//Function: Allow user to input budget into program
 void set_budget(int &budget) {
+  //open file budget.txt
   ofstream fout ("budget.txt");
+  //store inputed value into txt file and budget
   cout << "Please enter the bugget you would like to set" <<endl;
   cin  >> budget;
   fout << budget;
   cout << endl;
+  //close budget.txt
   fout.close();
 }
 
+//Input: Struct record & number of records & budget
+//Function: Generate a financial report, e.g. total expense, total income per month and percentage of each type of expenditure
 void fin_report(records record[], int num_records, int budget) {
   if(budget!=0) {
-
+    //User input of desired year and month to make report in
     int total_expense=0;
     int total_income=0;
     string year;
@@ -305,46 +331,58 @@ void fin_report(records record[], int num_records, int budget) {
     cin >> year;
     cout << "Please enter which month you would like to generterate the financial report" << endl;
     cin >> month;
-
+    //Find total expense per catergory i.e. Food and Utilities
     vector <string> type_expense;
     vector <int> sum_expense;
-    //loop for number of records
+    //Range all records
     for (int x=1; x<num_records; x++) {
       string date = record[x].date;
       bool add = true;
-      //check for vector type_expense
+      //Range number of unique type of expenses
+      //Check if it is in the vector
       for (int y=0; y< type_expense.size(); y++){
         if (record[x].type_expense==type_expense[y]){
           add = false;
         }
       }
+      //if true add it if the record is in the specific month and year
       if (add==true && record[x].type_expense!="Income" && date.substr(6,4)==year && date.substr(3,2)==month) {
         type_expense.push_back(record[x].type_expense);
       }
     }
+    //Range number of unique type of expenses
+    //initialize sum vectore to be 0
     for (int z=0; z<type_expense.size(); z++){
       sum_expense.push_back(0);
     }
+    //Range number of unique type of expenses
     for (int a=0; a<type_expense.size(); a++) {
+      //Range number of records
       for (int b=1; b<num_records; b++) {
         string date = record[b].date;
+        //if the record in the specific month and year and add it into sum
         if (record[b].type_expense==type_expense[a] && date.substr(6,4)==year && date.substr(3,2)==month){
           sum_expense[a]=sum_expense[a]+record[b].amount;
         }
       }
     }
-
+    //Total number of records
+    //Find total income and expenditure in that month
     for (int i=1; i<num_records; i++) {
       string date = record[i].date;
+      //check if the record in the specific month and year
       if (date.substr(6,4)==year && date.substr(3,2)==month){
+        //check if the record is income, if not add to total expenses
         if (record[i].type_expense!="Income") {
           total_expense=total_expense+record[i].amount;
         }
+        //else it is income add to income
         else {
           total_income=total_income+record[i].amount;
         }
       }
     }
+    //Output the total income and expense and if the user is over budget and the expense per catergory
     cout << "Total Income: " << total_income << endl;
     cout << "Total expenses: " << total_expense <<endl;
     if (total_expense<=budget){
@@ -353,7 +391,6 @@ void fin_report(records record[], int num_records, int budget) {
     else {
       cout << "You are over budget by your set budget of " << budget << " by " << abs(budget-total_expense) << endl;
     }
-
     for (int j=0; j<type_expense.size(); j++) {
       float sum = sum_expense[j];
       float total = total_expense;
@@ -362,6 +399,7 @@ void fin_report(records record[], int num_records, int budget) {
     }
     cout << endl;
   }
+  //If no budget set remind user to set a budget
   else {
     cout << "Please go to menu 4 and set budget" << endl;
     cout << endl;
