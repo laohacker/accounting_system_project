@@ -6,7 +6,7 @@
 
 using namespace std;
 
-const int MAX_NUM_RECORDS = 100;
+const int MAX_NUM_RECORDS = 1000;
 
 struct records{
   string date;
